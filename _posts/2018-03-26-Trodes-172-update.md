@@ -4,7 +4,7 @@ title: Trodes 1.7.2
 subtitle: New features, bug fixes, and important changes
 ---
 
-Release 1.7.2 is out as of Monday, March 26. Two months ago, when 1.7.0 was released, there wasn't any posts or release notes about it. However, after two months of receiving feedback from our amazing customers, we have released 1.7.2 with many bug fixes and feature modifications.
+Release 1.7.2 is out as of Monday, March 26. Two months ago, when 1.7.0 was released, there wasn't any posts or release notes about it. However, after two months of receiving feedback from our amazing customers, we have released minor revisions 1.7.1, followed by 1.7.2 with bug fixes and feature modifications.
 
 In addition to starting a massive Slack workspace for all of our customers, we are also experimenting with posting these updates on here, our Github page. As always, feedback is welcome and greatly appreciated! - Kevin
 

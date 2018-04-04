@@ -23,7 +23,7 @@ p {
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 600;
 }
 a {
   color: {{ site.link-col }};
@@ -193,7 +193,7 @@ img {
 
 @media only screen and (min-width: 768px) {
   .navbar-custom .avatar-container {
-    width: 100px;
+    width: 80px;
     margin-top: -50px;
   }
 
@@ -523,7 +523,7 @@ footer .theme-by {
     padding: 150px 0;
   }
   .intro-header .page-heading h1 {
-    font-size: 60px;
+    font-size: 50px;
   }
   .intro-header .post-heading h1 {
     font-size: 40px;
@@ -672,12 +672,12 @@ pre code {
   white-space: pre;
 }
 pre.highlight, .highlight > pre, td.code pre {
-  background-color: #FAFAFA;
-  background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%);
+  /* background-color: #FAFAFA; */
+  /* background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%); */
   background-repeat: repeat;
   background-size: 3em 3em;
   background-position: 0px 10px;
-  border-left: 7px solid #444;
+  /* border-left: 7px solid #444; */
 }
 code table, code table td, code table th, code table tbody, code table tr,
 td.gutter pre {
