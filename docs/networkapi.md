@@ -33,7 +33,7 @@ We currently only support Python 3. Python 2 is in the process of being deprecat
 
 ```bash
 #Run as admin using sudo if needed
-python3 -m pip install trodesnetwork.tar.gz 
+python3 -m pip install spikegadgets_python_toolbox.tar.gz 
 ```
 
 That command will install the package into your Python installed modules path. It will also download `numpy` as a dependency, but most scientific code in Python should be using that anyways.
