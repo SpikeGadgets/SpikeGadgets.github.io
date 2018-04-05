@@ -2,7 +2,6 @@
 layout: page
 title: Network API Guide
 ---
-
 - [Introduction and motivations](#introduction-and-motivations)
 - [Setup](#setup)
     - [Python](#python)
@@ -10,6 +9,9 @@ title: Network API Guide
 - [Basics](#basics)
     - [AbstractModuleClient](#abstractmoduleclient)
     - [High Frequency Data Streaming](#high-frequency-data-streaming)
+        - [Receiving Data](#receiving-data)
+            - [**Trodes Data**](#trodes-data)
+            - [**Other streaming data**](#other-streaming-data)
         - [Sending data](#sending-data)
 - [Advanced](#advanced)
     - [Hardware interface](#hardware-interface)
@@ -62,6 +64,7 @@ class MyCustomClient(trodesnetwork.AbstractModuleClient):
     def recv_quit(self):
         print('Python received a quit command')
         run_quit_procedure()
+        recvquit = true
     
     def recv_file_open(self, filename):
         print('Trodes opened a file called', filename)
@@ -81,6 +84,68 @@ One thing to note is the fact that AbstractModuleClient, along with all of the l
 ### High Frequency Data Streaming
 
 When it comes to high speed data, there is another set of classes that is built to handle that. `AbstractModuleClient`, while having messaging capabilities, should not be used to send high speed data (>500hz). We have two classes to handle that: `HighFreqPub` for publishing data and `HFSubConsumer` for subscribing to data. `AbstractModuleClient` will still manage the setup and broadcast the configuration details of these objects for you, but once created, they are separate objects with separate threads and sockets.
+
+#### Receiving Data
+
+Receive data with `HfSubConsumer`. In a nutshell, this class creates a background thread for the socket, immediately stores new messages into a circular buffer, and allows the user to pop off the data at their convenience.
+
+##### **Trodes Data**
+
+If you are subscribing to LFP data, or any of the data streams Trodes publishes, you can use one of the many helper functions such as `subscribeLFPData`, `subscribeSpikesData`, etc. Trodes currently publishes the data streams LFP, Spikes, Analog, Digital, and Neural.
+
+```python
+#Create internal buffer of 100 messages (data points), and subscribe to ntrodes 1, 2, 5, 6, 7, 8, 10
+datastream = network.subscribeLFPData(100, ['1','2', '5', '6', '7', '8', '10'])
+datastream.initialize()
+```
+
+The object created for suscribing to Trodes data is a derived class of `HfSubConsumer`. To fetch the data from the object's internal buffer, we utilize numpy. Here's the rest of the example followed by further explanation:
+
+```python
+buf = datastream.create_numpy_array()
+timestamp = 0
+while not recvquit:
+    #Get the number of data points that came in
+    n = datastream.available(1000) #timeout in ms
+    for i in range(n):
+        timestamp = datastream.getData() 
+        processDataBuffer(buf)
+```
+
+1. Create a numpy array from the object, proper size and dtype done for you.
+2. Enter into a while loop. The `recvquit` variable is changed in this example by the `recv_quit` overloaded function above.
+3. Call the `available(timeout)` function, where you check how many messages are in the buffer. If none then it will wait for the specified number of milliseconds. 
+4. `getData()` automagically pops the data off the internal buffer and places it into the numpy array `buf`. 
+5. Process the data with whatever you want. Keep in mind that the numpy array is a read-only structure.
+
+##### **Other streaming data**
+
+The Trodes data stream objects were created specifically and optimized for Trodes Data. You can subscribe to other modules' data streams via the `HFSubConsumer` class. The best way to create an `HfSubConsumer` class is to use the `subscribeHighFreqData` member function, part of the `AbstractModuleClient` base class. While you can manually instantiate the `HfSubConsumer` class, the network client will search available data streams and automatically create and subscribe the object for you. 
+
+```python
+datastream = network.subscribeHighFreqData('PositionData', 'CameraModule', 60)
+datastream.initialize()
+```
+
+Because this is a generic subscriber with no knowledge of the data provided, you must instantiate the numpy array yourself. Here's how to do it:
+
+```python
+ndtype = datastream.getDataType().dataFormat  #String containing numpy dtype
+nbytesize = datastream.getDataType().byteSize #Number of bytes in each message
+
+dt = numpy.dtype(ndtype)                      #Create the actual dtype from the string
+buf = memoryview(bytes(nbytesize))            #Create a memoryview handle
+npbuff = numpy.frombuffer(buf, dtype=dt)      #Create the numpy array
+```
+
+And because you manually created the numpy array, when calling `readData`, you must pass in the `memoryview` object you created, followed by the number of bytes. 
+
+```python
+while stillrunning:
+    n = datastream.available(1000)
+    for i in range(n):
+        byteswritten = datastream.readData(npbuff)
+```
 
 #### Sending data
 
@@ -127,7 +192,7 @@ if s.isValid()
     network.sendStimulationStopGroup(2)
 ```
 
-1. As you can see, the first thing to do is to initialize the hardware connection. This is because for low latency, hardware messages are sent via a separate socket sent directly to Trodes and that socket will need to be initialized. 
+1. The first thing to do is to initialize the hardware connection. This is because for low latency, hardware messages are sent via a separate socket directly connected to Trodes and that socket will need to be initialized. 
 2. Next, a StimulationCommand object was created and parameters set, randomly for the example.
 3. Finally, the user can send the parameters over to the hardware using `sendStimulationParams`. 
 4. To trigger a start or stop command for any of the groups/slots, call the `sendStimulation(Start/Stop)(Group/Slot)` functions.
