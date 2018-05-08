@@ -33,7 +33,7 @@ We currently only support Python 3. Python 2 is in the process of being deprecat
 
 ```bash
 #Run as admin using sudo if needed
-python3 -m pip install spikegadgets_python_toolbox.tar.gz 
+python3 -m pip install spikegadgets_python
 ```
 
 That command will install the package into your Python installed modules path. It will also download `numpy` as a dependency, but most scientific code in Python should be using that anyways.
@@ -178,23 +178,73 @@ Trodes has the ability to interact with the hardware, and with our new hardware,
 network.initializeHardwareConnection()
 
 s = trodesnetwork.StimulationCommand()
-s.setGroup(2)
-s.setSlot(1)
-s.setChannels(1, 1)
-s.setBiphasicPulseShape(5, 5, 5, 5, 5, 20, 5)
+s.setGroup(1)               #Group
+s.setSlot(1)                #Slot
+s.setChannels(1, 1, 1, 1)   #(Cathode NTrode ID, cathode channel, anode ntrode id, anode channel)
+s.setNumPulsesInTrain(5)    #Number of pulses in train
+
+#(leading pulse width samples, 
+#leading pulse amplitude[0-256), 
+#second pulse width samples, 
+#second pulse amplitude [0-256), 
+#interphase dwell samples, 
+#pulse period samples, 
+#start delay samples)
+s.setBiphasicPulseShape(100, 128, 100, 128, 5, 2000, 5)
 
 if s.isValid()
     network.sendStimulationParams(s)
-    network.sendClearStimulationParams(1)
     network.sendStimulationStartSlot(1)
-    network.sendStimulationStartGroup(2)
     network.sendStimulationStopSlot(1)
-    network.sendStimulationStopGroup(2)
 ```
 
 1. The first thing to do is to initialize the hardware connection. This is because for low latency, hardware messages are sent via a separate socket directly connected to Trodes and that socket will need to be initialized. 
-2. Next, a StimulationCommand object was created and parameters set, randomly for the example.
+2. Next, a StimulationCommand object was created and parameters set. In this case, the parameters are saved in group 1, slot 1.
 3. Finally, the user can send the parameters over to the hardware using `sendStimulationParams`. 
 4. To trigger a start or stop command for any of the groups/slots, call the `sendStimulation(Start/Stop)(Group/Slot)` functions.
 
+**Note:** If a slot's stimulation train is running, then any stimulation params sent for that particular slot will be ignored. There currently is no interface available to check if the parameters were set or ignored, so if you want to absolutely guarantee the setting of parameters for a particular slot, you'd have to first call `network.sendStimulationStopSlot(1)` followed by the call to `network.sendStimulationParams(s)`. The stim train will stop and then be open to receiving new parameters.
+
 ## Example
+
+Run this example after opening Trodes and starting streaming (from any source). Assumes Trodes network is located on 127.0.0.1 and port 49152, the default location address.
+
+```python
+from spikegadgets import trodesnetwork as tnp
+import numpy
+#Define this for breaking loop, comes in later
+stillrunning = True
+def stoploop():
+    global stillrunning
+    stillrunning = False
+
+
+#Definition of network client class
+class PythonClient(tnp.AbstractModuleClient):
+    def recv_quit(self):
+        stoploop()
+
+
+#Connect and initialize
+network = PythonClient("TestPython", "tcp://127.0.0.1",49152)
+if network.initialize() != 0:
+    print("Network could not successfully initialize")
+    del network
+    quit()
+
+datastream = network.subscribeLFPData(100, ['1','2', '5', '6', '7', '8', '10'])
+datastream.initialize() #Initialize the streaming object
+
+buf = datastream.create_numpy_array()
+timestamp = 0
+#Continuously get data until Trodes tells us to quit, which triggers the function that flips the "stillrunning" variable
+while stillrunning:
+    #Get the number of data points that came in
+    n = datastream.available(1000) #timeout in ms
+    #Go through and grab all the data packets, processing one at a time
+    for i in range(n):
+        timestamp = datastream.getData() 
+        print(buf)
+#Cleanup
+del network
+```
