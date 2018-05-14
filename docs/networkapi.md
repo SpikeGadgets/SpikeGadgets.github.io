@@ -118,6 +118,24 @@ while not recvquit:
 4. `getData()` automagically pops the data off the internal buffer and places it into the numpy array `buf`. 
 5. Process the data with whatever you want. Keep in mind that the numpy array is a read-only structure.
 
+##### **Types of Trodes Data**
+
+1. `subscribeLFPData(buffersize, ['1', '2', '2', '3'])` - Get LFP data in an array. Pass in:
+    - the max number of data points to hold 
+    - a list of nTrodes (as strings) to subscribe to
+2. `subscribeSpikesData(buffersize, ['3,0', '4,1', '5,0'])` - Get Spike data. Pass in:
+    - the max number of data points to hold
+    - a list of strings, specifying the ntrode and cluster. A 0 cluster is unclustered data. These clusters can be drawn and created by the user in Trodes
+3. `subscribeNeuralData(buffersize, ['1,1', '1,2', '2,1', '2,2'])` - Get raw, unfiltered data from channels. Pass in: 
+    - the max number of data points to hold
+    - a list of strings, specifying the ntrode and ith channel, as displayed in the Trodes stream window.
+4. `subscribeDigitalData(buffersize, ['ECU,Din12', 'ECU,Din13'])` - Get digital data from digital inputs. Pass in:
+    - the max number of data points to hold
+    - a list of strings, specifying the device and digital channel in each string, as specified in the trodes configuration file.
+5. `subscribeAnalogData(buffersize, ['ECU,Ain1', 'headstageSensor,GyroX'])` - Get analog data from analog inputs. Pass in:
+    - the max number of data points to hold
+    - a list of strings, specifying the device and analog channel in each string, as specified in the trodes configuration file.
+
 ##### **Other streaming data**
 
 The Trodes data stream objects were created specifically and optimized for Trodes Data. You can subscribe to other modules' data streams via the `HFSubConsumer` class. The best way to create an `HfSubConsumer` class is to use the `subscribeHighFreqData` member function, part of the `AbstractModuleClient` base class. While you can manually instantiate the `HfSubConsumer` class, the network client will search available data streams and automatically create and subscribe the object for you. 
