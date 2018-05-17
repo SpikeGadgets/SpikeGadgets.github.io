@@ -223,6 +223,20 @@ if s.isValid()
 
 **Note:** If a slot's stimulation train is running, then any stimulation params sent for that particular slot will be ignored. There currently is no interface available to check if the parameters were set or ignored, so if you want to absolutely guarantee the setting of parameters for a particular slot, you'd have to first call `network.sendStimulationStopSlot(1)` followed by the call to `network.sendStimulationParams(s)`. The stim train will stop and then be open to receiving new parameters.
 
+### Latencies
+
+For any datastream, each time data is sent, a single 64-bit integer is sent with it containing system time. By default, the value is the time in milliseconds when the packet is sent out. For all Trodes data, the integer denotes the system time when the data gets read in from hardware into Trodes. Here is an example of accessing the timestamp and calculating the latency:
+
+```Python
+datastream = network.subscribeSpikesData(100, ['3, 0', '3,1', '8, 0'])
+datastream.initialize()
+buf = datastream.create_numpy_array()
+datastream.getData()    #Gets data and places into 'buf'
+# systemTimeMSecs() is a convenience function returning the current system time
+# datastream.lastSysTimestamp() returns the timestamp associated with the last data retrieved 
+latency = tnp.systemTimeMSecs() - datastream.lastSysTimestamp() 
+```
+
 ## Example
 
 Run this example after opening Trodes and starting streaming (from any source). Assumes Trodes network is located on 127.0.0.1 and port 49152, the default location address.
