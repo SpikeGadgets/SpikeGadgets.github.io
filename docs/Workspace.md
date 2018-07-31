@@ -2,8 +2,6 @@
 layout: page
 title: Workspace/Configuration Files
 ---
-# Table of Contents
-
 - [What is a Workspace](#what-is-a-workspace)
 - [Creating a Workspace Configuration](#creating-a-workspace-configuration)
     - [Method 1: Create a workspace using Trodes](#method-1-create-a-workspace-using-trodes)
@@ -38,7 +36,7 @@ The first way you can create a workspace configuration file is through the main 
 2. In the submenu that opens you have two options, "From Scratch" and "Edit Existing File."
     * Selecting the "From Scratch" option will open the workspace editor menu of a blank workspace with a few defaults selected.
     * Selecting the "Edit Existing File" will open the workspace editor and populate it with a user-selected workspace's configuration settings. 
-3. Tweak and edit all workspace settings as you see fit via the menu options.  See the [using the workspace editor section](#markdown-header-using-the-workspace-editor) for information on what the different options in the editor menu do.
+3. Tweak and edit all workspace settings as you see fit via the menu options.  See the [using the workspace editor section](#using-the-workspace-editor) for information on what the different options in the editor menu do.
 4. When you are finished editing, click the accept option.  If you made any mistakes or configured your workspace incorrectly, an error message will appear informing you what settings you need to correct.  Assuming you've done that, hitting 'accept' again will open the workspace in the Trodes main program.
     * __NOTE:__ Hitting 'accept' will save the workspace as "tempWorkspace.trodesconf" in the same directory as your Trodes executable.  If you want to save the workspace for future use, make sure to either manually rename the file or save the file in the Trodes main program via the File->Workspace->Save As menu option.
 
@@ -65,7 +63,7 @@ As a final note, if you are experiencing crashes or other issues while using a m
 
 ## Using the Workspace Editor
 
-The Workspace Editor is a graphical user interface that provides a convenient way for users to create and edit Trodes configuration files without the hassle of having to mess with the underlying xml.  Available in both a standalone module and embedded in Trodes, the Workspace Editor is a dialog menu made up of several tabs; a [general settings tab](#markdown-header-general-settings-tab), a [auxiliary configuration tab](#markdown-header-auxiliary-configuration-tab), a [trode configuration tab](#markdown-header-trode-configuration-tab), and a [module configuration tab](#markdown-header-module-configuration-tab).
+The Workspace Editor is a graphical user interface that provides a convenient way for users to create and edit Trodes configuration files without the hassle of having to mess with the underlying xml.  Available in both a standalone module and embedded in Trodes, the Workspace Editor is a dialog menu made up of several tabs; a [general settings tab](#general-settings-tab), a [auxiliary configuration tab](#auxiliary-configuration-tab), a [trode configuration tab](#trode-configuration-tab), and a [module configuration tab](#module-configuration-tab).
 
 ### General Settings Tab
 

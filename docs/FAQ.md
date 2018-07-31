@@ -1,20 +1,25 @@
-[Wiki Home](Home) > [User Manual](Documentation) > [FAQs](FAQ)
+---
+layout: page
+title: FAQ
+---
 
-[TOC]
+# Frequently Asked Questions
 
-#Frequently Asked Questions
-##How do I ...
-##Inform developers of a bug?
+## How do I
+
+## Inform developers of a bug
+
 Write down the exact scenario that happened, everything that happened the moment you started Trodes until the bug or crash, and what you were clicking when it happened. Open the debugLogs folder and in the file created under that session, at the top, note the version, compile time, and Git commit. 
 
 Provide the developers with the debug log, your exact actions, operating system, and if possible, the files you were using. 
 
-##Why did Trodes just ...
+## Why did Trodes just
 
-###Crash after ~0.5 seconds of streaming on Windows?
+### Crash after ~0.5 seconds of streaming on Windows
+
 This may be due to an audio driver issue, found on our Dell XPS machines and some other windows machines. The solution is to open the folder containing Trodes in the command prompt, and run Trodes like the following: 
 
-```
+```bash
 Trodes.exe audioOff
 ```
 

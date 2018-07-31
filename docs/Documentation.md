@@ -38,3 +38,7 @@ title: User Manual
 #### [Benchmarking](/docs/Benchmarking)
 
 - How to test your system's data acquisition/processing latency
+
+### [DataLogger GUI](/docs/dataloggergui)
+
+- A graphical interface for extracting and converting data recorded on a data logger's SD card to .rec files
