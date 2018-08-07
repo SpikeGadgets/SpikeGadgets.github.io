@@ -9,26 +9,26 @@
   <Version>1.6.0</Version>
   <ReleaseDate>2018-08-01</ReleaseDate>
   <SortingPriority>2</SortingPriority>
-  <UpdateFile CompressedSize="251" OS="Any" UncompressedSize="69"/>
+  <UpdateFile CompressedSize="251" UncompressedSize="69" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
    <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>4589674b9c59b6ddc0a87519dba412c00b0c8d2b</SHA1>
+  <SHA1>45b6c07d2d1bc738b6ae8fb6761335f797d21779</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>PackageRandom</Name>
   <DisplayName>Random package</DisplayName>
   <Description>A random </Description>
-  <Version>1.1.0</Version>
+  <Version>1.0.0</Version>
   <ReleaseDate>2018-08-02</ReleaseDate>
   <SortingPriority>1</SortingPriority>
-  <UpdateFile CompressedSize="261" OS="Any" UncompressedSize="79"/>
+  <UpdateFile CompressedSize="244" UncompressedSize="62" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
    <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>58c0d64141362e0153448c17aaaf726558a5c965</SHA1>
+  <SHA1>d67f17e3c12fbe3af472ce8b475eb5e91092415a</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>Trodes</Name>
@@ -38,11 +38,11 @@
   <ReleaseDate>2018-08-01</ReleaseDate>
   <ForcedInstallation>true</ForcedInstallation>
   <SortingPriority>9</SortingPriority>
-  <UpdateFile CompressedSize="297" OS="Any" UncompressedSize="96"/>
+  <UpdateFile CompressedSize="297" UncompressedSize="96" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
    <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>9843921d3ce6461ee448a23fc2d0fc444fcdbfdc</SHA1>
+  <SHA1>5b7a2b857bbcd8e0e2259d4ae7c21e9d51564e95</SHA1>
  </PackageUpdate>
 </Updates>
