@@ -9,26 +9,26 @@
   <Version>1.6.0</Version>
   <ReleaseDate>2018-08-01</ReleaseDate>
   <SortingPriority>2</SortingPriority>
-  <UpdateFile OS="Any" CompressedSize="251" UncompressedSize="69"/>
+  <UpdateFile CompressedSize="251" OS="Any" UncompressedSize="69"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
-   <License name="GNU General Public License v3" file="license.txt"/>
+   <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>574fc6a7ba1f1b4065ee521012ff143ee361cc82</SHA1>
+  <SHA1>4589674b9c59b6ddc0a87519dba412c00b0c8d2b</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>PackageRandom</Name>
   <DisplayName>Random package</DisplayName>
   <Description>A random </Description>
-  <Version>1.0.0</Version>
+  <Version>1.1.0</Version>
   <ReleaseDate>2018-08-02</ReleaseDate>
   <SortingPriority>1</SortingPriority>
-  <UpdateFile OS="Any" CompressedSize="244" UncompressedSize="62"/>
+  <UpdateFile CompressedSize="261" OS="Any" UncompressedSize="79"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
-   <License name="GNU General Public License v3" file="license.txt"/>
+   <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>d394d8aae2a28d3264b49da3a278e8c0d4bd3614</SHA1>
+  <SHA1>58c0d64141362e0153448c17aaaf726558a5c965</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>Trodes</Name>
@@ -38,11 +38,11 @@
   <ReleaseDate>2018-08-01</ReleaseDate>
   <ForcedInstallation>true</ForcedInstallation>
   <SortingPriority>9</SortingPriority>
-  <UpdateFile OS="Any" CompressedSize="297" UncompressedSize="96"/>
+  <UpdateFile CompressedSize="297" OS="Any" UncompressedSize="96"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
-   <License name="GNU General Public License v3" file="license.txt"/>
+   <License file="license.txt" name="GNU General Public License v3"/>
   </Licenses>
-  <SHA1>ae573d9ca1696325ccac5fb7d374963643614dc7</SHA1>
+  <SHA1>9843921d3ce6461ee448a23fc2d0fc444fcdbfdc</SHA1>
  </PackageUpdate>
 </Updates>
