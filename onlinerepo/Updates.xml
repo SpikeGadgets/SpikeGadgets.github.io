@@ -9,26 +9,26 @@
   <Version>1.6.0</Version>
   <ReleaseDate>2018-08-01</ReleaseDate>
   <SortingPriority>2</SortingPriority>
-  <UpdateFile UncompressedSize="69" OS="Any" CompressedSize="251"/>
+  <UpdateFile UncompressedSize="69" CompressedSize="251" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <Licenses>
-   <License file="license.txt" name="GNU General Public License v3"/>
+   <License name="GNU General Public License v3" file="license.txt"/>
   </Licenses>
-  <SHA1>508e1613f05b819e6eab043bad3deebaebbcb835</SHA1>
+  <SHA1>a2ca6f3d72f3073a53a76201025af5a147cd4a94</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>Trodes</Name>
   <DisplayName>Trodes</DisplayName>
   <Description>Trodes and included modules</Description>
-  <Version>1.7.3</Version>
+  <Version>1.7.4</Version>
   <ReleaseDate>2018-08-01</ReleaseDate>
   <ForcedInstallation>true</ForcedInstallation>
   <SortingPriority>9</SortingPriority>
-  <UpdateFile UncompressedSize="714101368" OS="Any" CompressedSize="43764149"/>
+  <UpdateFile UncompressedSize="166587163" CompressedSize="38384061" OS="Any"/>
   <DownloadableArchives>Trodes.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="license.txt" name="GNU General Public License v3"/>
+   <License name="GNU General Public License v3" file="license.txt"/>
   </Licenses>
-  <SHA1>b13ae30bebe2d599942982d5f8f1e09ac1b189c3</SHA1>
+  <SHA1>35950f5a030f147e6daef8c987dbece506c76f40</SHA1>
  </PackageUpdate>
 </Updates>
