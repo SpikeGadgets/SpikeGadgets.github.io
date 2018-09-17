@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Updates>
+ <ApplicationName>{AnyApplication}</ApplicationName>
+ <ApplicationVersion>1.0.0</ApplicationVersion>
+ <Checksum>true</Checksum>
+ <PackageUpdate>
+  <Name>DataLoggerGUI</Name>
+  <DisplayName>DataLogger GUI</DisplayName>
+  <Description>A user interface for utilities related to SpikeGadgets data loggers</Description>
+  <Version>1.5.0</Version>
+  <ReleaseDate>2018-08-01</ReleaseDate>
+  <SortingPriority>2</SortingPriority>
+  <UpdateFile CompressedSize="16792534" OS="Any" UncompressedSize="62232200"/>
+  <DownloadableArchives>DataLoggerGUI.7z</DownloadableArchives>
+  <SHA1>f88e16a06e6b722ef9e5aa4d31070f2e236be141</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>Trodes</Name>
+  <DisplayName>Trodes</DisplayName>
+  <Description>Trodes and included modules</Description>
+  <Version>1.7.4</Version>
+  <ReleaseDate>2018-08-01</ReleaseDate>
+  <ForcedInstallation>true</ForcedInstallation>
+  <SortingPriority>9</SortingPriority>
+  <UpdateFile CompressedSize="38370270" OS="Any" UncompressedSize="166429381"/>
+  <DownloadableArchives>Trodes.7z</DownloadableArchives>
+  <Licenses>
+   <License name="GNU General Public License v3" file="license.txt"/>
+  </Licenses>
+  <SHA1>2d90d0d736ff5a5e16e5384172bd8d6f1c33afce</SHA1>
+ </PackageUpdate>
+</Updates>
